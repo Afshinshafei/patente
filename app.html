@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italian Patente B - Learning App</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <a href="index.html" class="app-logo">
+                <img src="assets/icon.svg" alt="Patente B">
+                <span>Patente B</span>
+            </a>
+            
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <span>Home</span>
+                </button>
+                <button class="nav-tab" data-tab="quiz">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"></path>
+                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                    </svg>
+                    <span>Quiz</span>
+                </button>
+                <button class="nav-tab" data-tab="flashcards">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                        <path d="M12 8v8M8 12h8"></path>
+                    </svg>
+                    <span>Cards</span>
+                </button>
+                <button class="nav-tab" data-tab="study">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+                    </svg>
+                    <span>Study</span>
+                </button>
+            </nav>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home-section" class="section active">
+                <div class="home-welcome">
+                    <h1>Welcome! <span style="color: var(--italy-green)">Benvenuto!</span></h1>
+                    <p>Learn to pass the Italian driving license exam</p>
+                </div>
+                
+                <!-- Stats Dashboard -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="stat-quizzes">0</div>
+                        <div class="stat-card-label">Quizzes Taken</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="stat-score">0%</div>
+                        <div class="stat-card-label">Average Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="stat-cards">0</div>
+                        <div class="stat-card-label">Cards Learned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value" id="stat-streak">0</div>
+                        <div class="stat-card-label">Day Streak</div>
+                    </div>
+                </div>
+                
+                <!-- Action Cards -->
+                <div class="action-cards">
+                    <div class="action-card" onclick="switchToTab('quiz')">
+                        <div class="action-icon">📝</div>
+                        <div class="action-title">Take a Quiz</div>
+                        <div class="action-desc">Test your knowledge with official-style questions</div>
+                    </div>
+                    <div class="action-card" onclick="switchToTab('flashcards')">
+                        <div class="action-icon">🎴</div>
+                        <div class="action-title">Practice Flashcards</div>
+                        <div class="action-desc">Learn traffic signs and vocabulary</div>
+                    </div>
+                    <div class="action-card" onclick="switchToTab('study')">
+                        <div class="action-icon">📚</div>
+                        <div class="action-title">Study Guide</div>
+                        <div class="action-desc">Read about rules and regulations</div>
+                    </div>
+                </div>
+                
+                <!-- Quick Tips -->
+                <div class="card mt-lg">
+                    <div class="card-header">
+                        <h3 class="card-title">💡 Quick Tip</h3>
+                    </div>
+                    <p id="tip-text" class="study-text"></p>
+                </div>
+            </section>
+            
+            <!-- Quiz Section -->
+            <section id="quiz-section" class="section">
+                <!-- Quiz Setup -->
+                <div id="quiz-setup" class="quiz-setup">
+                    <h2>Choose Quiz Mode</h2>
+                    <p>Select a category or take a mixed quiz with all topics</p>
+                    
+                    <div class="category-grid">
+                        <div class="category-card selected" data-category="all">
+                            <div class="category-icon">🎯</div>
+                            <div class="category-name">All Topics</div>
+                            <div class="category-count">200+ questions</div>
+                        </div>
+                        <div class="category-card" data-category="signs">
+                            <div class="category-icon">🚦</div>
+                            <div class="category-name">Traffic Signs</div>
+                            <div class="category-count" id="count-signs">0 questions</div>
+                        </div>
+                        <div class="category-card" data-category="priority">
+                            <div class="category-icon">⚠️</div>
+                            <div class="category-name">Priority Rules</div>
+                            <div class="category-count" id="count-priority">0 questions</div>
+                        </div>
+                        <div class="category-card" data-category="speed">
+                            <div class="category-icon">🚗</div>
+                            <div class="category-name">Speed Limits</div>
+                            <div class="category-count" id="count-speed">0 questions</div>
+                        </div>
+                        <div class="category-card" data-category="safety">
+                            <div class="category-icon">🛡️</div>
+                            <div class="category-name">Safety Rules</div>
+                            <div class="category-count" id="count-safety">0 questions</div>
+                        </div>
+                        <div class="category-card" data-category="parking">
+                            <div class="category-icon">🅿️</div>
+                            <div class="category-name">Parking</div>
+                            <div class="category-count" id="count-parking">0 questions</div>
+                        </div>
+                        <div class="category-card" data-category="alcohol">
+                            <div class="category-icon">🚫</div>
+                            <div class="category-name">Alcohol & Drugs</div>
+                            <div class="category-count" id="count-alcohol">0 questions</div>
+                        </div>
+                        <div class="category-card" data-category="documents">
+                            <div class="category-icon">📄</div>
+                            <div class="category-name">Documents</div>
+                            <div class="category-count" id="count-documents">0 questions</div>
+                        </div>
+                        <div class="category-card" data-category="emergency">
+                            <div class="category-icon">🚨</div>
+                            <div class="category-name">Emergencies</div>
+                            <div class="category-count" id="count-emergency">0 questions</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-lg">
+                        <label style="color: var(--text-secondary); margin-right: 10px;">Number of questions:</label>
+                        <select id="quiz-length" style="padding: 8px 16px; border-radius: 8px; background: var(--surface); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.1);">
+                            <option value="10">10 questions</option>
+                            <option value="20">20 questions</option>
+                            <option value="30" selected>30 questions (like real exam)</option>
+                            <option value="40">40 questions</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg mt-lg" onclick="startQuiz()">
+                        Start Quiz
+                    </button>
+                </div>
+                
+                <!-- Quiz Container (shown during quiz) -->
+                <div id="quiz-container" class="quiz-container hidden">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="quiz-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text" id="quiz-progress-text">0/30</span>
+                    </div>
+                    
+                    <div class="question-card">
+                        <span class="question-category" id="question-category">Category</span>
+                        <p class="question-text" id="question-text">Question text goes here...</p>
+                        
+                        <div class="answer-buttons">
+                            <button class="answer-btn" id="btn-true" onclick="answerQuestion(true)">
+                                ✓ VERO<br><small style="font-weight:normal">(True)</small>
+                            </button>
+                            <button class="answer-btn" id="btn-false" onclick="answerQuestion(false)">
+                                ✗ FALSO<br><small style="font-weight:normal">(False)</small>
+                            </button>
+                        </div>
+                        
+                        <div class="feedback" id="feedback">
+                            <div class="feedback-header">
+                                <span id="feedback-icon"></span>
+                                <span id="feedback-title"></span>
+                            </div>
+                            <p class="feedback-text" id="feedback-text"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-controls">
+                        <button class="btn btn-secondary hidden" id="btn-next" onclick="nextQuestion()">
+                            Next Question →
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quiz Results -->
+                <div id="quiz-results" class="quiz-results hidden">
+                    <h2>Quiz Complete!</h2>
+                    <div class="results-score" id="results-score">0%</div>
+                    <p class="results-message" id="results-message"></p>
+                    
+                    <div class="results-stats">
+                        <div class="stat">
+                            <div class="stat-value text-success" id="results-correct">0</div>
+                            <div class="stat-label">Correct</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value text-error" id="results-incorrect">0</div>
+                            <div class="stat-label">Incorrect</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="results-total">0</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="startQuiz()">Try Again</button>
+                        <button class="btn btn-secondary" onclick="showQuizSetup()">Change Category</button>
+                        <button class="btn btn-outline" onclick="reviewMistakes()" id="btn-review">Review Mistakes</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Flashcards Section -->
+            <section id="flashcards-section" class="section">
+                <!-- Flashcard Setup -->
+                <div id="flashcard-setup" class="flashcard-setup">
+                    <h2>Choose a Deck</h2>
+                    <p>Select what you want to practice</p>
+                    
+                    <div class="deck-grid">
+                        <div class="deck-card" onclick="startFlashcards('signs')">
+                            <div class="deck-icon">🚦</div>
+                            <div class="deck-title">Traffic Signs</div>
+                            <div class="deck-count">40 cards</div>
+                            <div class="deck-progress">
+                                <div class="deck-progress-fill" id="progress-signs" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="deck-card" onclick="startFlashcards('vocabulary')">
+                            <div class="deck-icon">📖</div>
+                            <div class="deck-title">Driving Vocabulary</div>
+                            <div class="deck-count">45 cards</div>
+                            <div class="deck-progress">
+                                <div class="deck-progress-fill" id="progress-vocabulary" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="deck-card" onclick="startFlashcards('rules')">
+                            <div class="deck-icon">📋</div>
+                            <div class="deck-title">Key Rules</div>
+                            <div class="deck-count">20 cards</div>
+                            <div class="deck-progress">
+                                <div class="deck-progress-fill" id="progress-rules" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flashcard Container -->
+                <div id="flashcard-container" class="flashcard-container hidden">
+                    <div class="flashcard-nav">
+                        <button class="btn btn-secondary btn-sm" onclick="exitFlashcards()">← Back</button>
+                        <span class="flashcard-counter" id="flashcard-counter">1 / 40</span>
+                        <button class="btn btn-secondary btn-sm" onclick="shuffleCurrentDeck()">🔀 Shuffle</button>
+                    </div>
+                    
+                    <div class="flashcard-wrapper">
+                        <div class="flashcard" id="flashcard" onclick="flipCard()">
+                            <div class="flashcard-face flashcard-front">
+                                <span class="flashcard-category" id="card-category">Category</span>
+                                <div class="flashcard-sign" id="card-symbol">🚦</div>
+                                <div class="flashcard-term" id="card-term">Italian Term</div>
+                                <div class="flashcard-pronunciation" id="card-pronunciation">(pronunciation)</div>
+                                <span class="flashcard-hint">Click to flip</span>
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                <span class="flashcard-category" id="card-category-back">Category</span>
+                                <div class="flashcard-answer" id="card-answer">English meaning and explanation</div>
+                                <span class="flashcard-hint">Click to flip back</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flashcard-controls">
+                        <button class="btn btn-error" onclick="markCard(false)">
+                            ↻ Review Again
+                        </button>
+                        <button class="btn btn-secondary" onclick="previousCard()">
+                            ← Previous
+                        </button>
+                        <button class="btn btn-secondary" onclick="nextCard()">
+                            Next →
+                        </button>
+                        <button class="btn btn-success" onclick="markCard(true)">
+                            ✓ Got It!
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Study Section -->
+            <section id="study-section" class="section">
+                <div class="study-container">
+                    <h2>Study Guide</h2>
+                    <p class="text-muted mb-lg">Click on a topic to expand and read. Italian terms are in <span style="color: var(--italy-green)">green</span>.</p>
+                    
+                    <div class="topic-list" id="topic-list">
+                        <!-- Topics will be inserted by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/flashcardData.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/flashcards.js"></script>
+</body>
+</html>
+

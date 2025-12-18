@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#0066CC" stroke="#003366" stroke-width="4"/>
+  
+  <!-- Italian Flag Stripe (top) -->
+  <rect x="30" y="25" width="140" height="8" rx="4" fill="#009246"/>
+  <rect x="30" y="25" width="47" height="8" rx="4" fill="#009246"/>
+  <rect x="77" y="25" width="46" height="8" fill="#FFFFFF"/>
+  <rect x="123" y="25" width="47" height="8" rx="4" fill="#CE2B37"/>
+  
+  <!-- Steering Wheel -->
+  <circle cx="100" cy="105" r="55" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+  <circle cx="100" cy="105" r="20" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+  
+  <!-- Steering Wheel Spokes -->
+  <line x1="100" y1="50" x2="100" y2="85" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <line x1="55" y1="130" x2="82" y2="115" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <line x1="145" y1="130" x2="118" y2="115" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Letter P for Patente -->
+  <text x="100" y="115" font-family="Arial Black, sans-serif" font-size="28" font-weight="bold" fill="#FFD700" text-anchor="middle">P</text>
+  
+  <!-- Text: PATENTE -->
+  <text x="100" y="175" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PATENTE B</text>
+</svg>
+

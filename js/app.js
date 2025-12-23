@@ -8,7 +8,6 @@ const Storage = {
     keys: {
         stats: 'patente_stats',
         quizHistory: 'patente_quiz_history',
-        flashcardProgress: 'patente_flashcard_progress',
         lastVisit: 'patente_last_visit',
         streak: 'patente_streak'
     },
@@ -35,8 +34,7 @@ const Storage = {
         return this.get(this.keys.stats) || {
             quizzesTaken: 0,
             totalCorrect: 0,
-            totalQuestions: 0,
-            cardsLearned: 0
+            totalQuestions: 0
         };
     },
     
@@ -45,18 +43,6 @@ const Storage = {
         Object.assign(stats, newData);
         this.set(this.keys.stats, stats);
         return stats;
-    },
-    
-    getFlashcardProgress() {
-        return this.get(this.keys.flashcardProgress) || {
-            signs: { learned: [], reviewing: [] },
-            vocabulary: { learned: [], reviewing: [] },
-            rules: { learned: [], reviewing: [] }
-        };
-    },
-    
-    saveFlashcardProgress(progress) {
-        this.set(this.keys.flashcardProgress, progress);
     },
     
     updateStreak() {
@@ -112,11 +98,6 @@ function switchToTab(tabName) {
     if (tabName === 'quiz') {
         showQuizSetup();
     }
-    
-    // Special handling for flashcards
-    if (tabName === 'flashcards') {
-        showFlashcardSetup();
-    }
 }
 
 // =====================================================
@@ -135,68 +116,9 @@ function updateStatsDisplay() {
         : 0;
     document.getElementById('stat-score').textContent = `${avgScore}%`;
     
-    document.getElementById('stat-cards').textContent = stats.cardsLearned;
     document.getElementById('stat-streak').textContent = streak;
-    
-    // Update flashcard progress bars
-    const progress = Storage.getFlashcardProgress();
-    const signTotal = FlashcardData.trafficSigns.length;
-    const vocabTotal = FlashcardData.vocabulary.length;
-    const rulesTotal = FlashcardData.rules.length;
-    
-    const signProgress = document.getElementById('progress-signs');
-    const vocabProgress = document.getElementById('progress-vocabulary');
-    const rulesProgress = document.getElementById('progress-rules');
-    
-    if (signProgress) {
-        signProgress.style.width = `${(progress.signs.learned.length / signTotal) * 100}%`;
-    }
-    if (vocabProgress) {
-        vocabProgress.style.width = `${(progress.vocabulary.learned.length / vocabTotal) * 100}%`;
-    }
-    if (rulesProgress) {
-        rulesProgress.style.width = `${(progress.rules.learned.length / rulesTotal) * 100}%`;
-    }
 }
 
-// =====================================================
-// Study Materials
-// =====================================================
-
-function loadStudyTopics() {
-    const topicList = document.getElementById('topic-list');
-    if (!topicList || !StudyMaterials) return;
-    
-    topicList.innerHTML = '';
-    
-    StudyMaterials.topics.forEach(topic => {
-        const topicCard = document.createElement('div');
-        topicCard.className = 'topic-card';
-        topicCard.innerHTML = `
-            <div class="topic-header" onclick="toggleTopic(this)">
-                <div class="topic-icon">${topic.icon}</div>
-                <div class="topic-info">
-                    <div class="topic-title">${topic.title}</div>
-                    <div class="topic-subtitle">${topic.titleIt}</div>
-                </div>
-                <div class="topic-arrow">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 9l6 6 6-6"></path>
-                    </svg>
-                </div>
-            </div>
-            <div class="topic-content">
-                <div class="study-text">${topic.content}</div>
-            </div>
-        `;
-        topicList.appendChild(topicCard);
-    });
-}
-
-function toggleTopic(header) {
-    const card = header.closest('.topic-card');
-    card.classList.toggle('open');
-}
 
 // =====================================================
 // Quick Tips
@@ -278,9 +200,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize stats
     updateStatsDisplay();
     
-    // Load study materials
-    loadStudyTopics();
-    
     // Show random tip
     showRandomTip();
     
@@ -295,6 +214,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Make functions globally available
 window.switchToTab = switchToTab;
-window.toggleTopic = toggleTopic;
 window.Storage = Storage;
 

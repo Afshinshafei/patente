@@ -1,5 +1,5 @@
 // Italian Patente B Learning App - Data Module
-// Contains questions, flashcards, and study materials
+// Contains quiz questions
 
 const PatenteData = {
     // Quiz Categories

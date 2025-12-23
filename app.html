@@ -30,20 +30,6 @@
                     </svg>
                     <span>Quiz</span>
                 </button>
-                <button class="nav-tab" data-tab="flashcards">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                        <path d="M12 8v8M8 12h8"></path>
-                    </svg>
-                    <span>Cards</span>
-                </button>
-                <button class="nav-tab" data-tab="study">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
-                    </svg>
-                    <span>Study</span>
-                </button>
             </nav>
         </header>
         
@@ -67,10 +53,6 @@
                         <div class="stat-card-label">Average Score</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-card-value" id="stat-cards">0</div>
-                        <div class="stat-card-label">Cards Learned</div>
-                    </div>
-                    <div class="stat-card">
                         <div class="stat-card-value" id="stat-streak">0</div>
                         <div class="stat-card-label">Day Streak</div>
                     </div>
@@ -83,16 +65,6 @@
                         <div class="action-title">Take a Quiz</div>
                         <div class="action-desc">Test your knowledge with official-style questions</div>
                     </div>
-                    <div class="action-card" onclick="switchToTab('flashcards')">
-                        <div class="action-icon">🎴</div>
-                        <div class="action-title">Practice Flashcards</div>
-                        <div class="action-desc">Learn traffic signs and vocabulary</div>
-                    </div>
-                    <div class="action-card" onclick="switchToTab('study')">
-                        <div class="action-icon">📚</div>
-                        <div class="action-title">Study Guide</div>
-                        <div class="action-desc">Read about rules and regulations</div>
-                    </div>
                 </div>
                 
                 <!-- Quick Tips -->
@@ -100,7 +72,7 @@
                     <div class="card-header">
                         <h3 class="card-title">💡 Quick Tip</h3>
                     </div>
-                    <p id="tip-text" class="study-text"></p>
+                    <p id="tip-text" style="color: var(--text-secondary); line-height: 1.6;"></p>
                 </div>
             </section>
             
@@ -240,104 +212,13 @@
                     </div>
                 </div>
             </section>
-            
-            <!-- Flashcards Section -->
-            <section id="flashcards-section" class="section">
-                <!-- Flashcard Setup -->
-                <div id="flashcard-setup" class="flashcard-setup">
-                    <h2>Choose a Deck</h2>
-                    <p>Select what you want to practice</p>
-                    
-                    <div class="deck-grid">
-                        <div class="deck-card" onclick="startFlashcards('signs')">
-                            <div class="deck-icon">🚦</div>
-                            <div class="deck-title">Traffic Signs</div>
-                            <div class="deck-count">40 cards</div>
-                            <div class="deck-progress">
-                                <div class="deck-progress-fill" id="progress-signs" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="deck-card" onclick="startFlashcards('vocabulary')">
-                            <div class="deck-icon">📖</div>
-                            <div class="deck-title">Driving Vocabulary</div>
-                            <div class="deck-count">45 cards</div>
-                            <div class="deck-progress">
-                                <div class="deck-progress-fill" id="progress-vocabulary" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="deck-card" onclick="startFlashcards('rules')">
-                            <div class="deck-icon">📋</div>
-                            <div class="deck-title">Key Rules</div>
-                            <div class="deck-count">20 cards</div>
-                            <div class="deck-progress">
-                                <div class="deck-progress-fill" id="progress-rules" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Flashcard Container -->
-                <div id="flashcard-container" class="flashcard-container hidden">
-                    <div class="flashcard-nav">
-                        <button class="btn btn-secondary btn-sm" onclick="exitFlashcards()">← Back</button>
-                        <span class="flashcard-counter" id="flashcard-counter">1 / 40</span>
-                        <button class="btn btn-secondary btn-sm" onclick="shuffleCurrentDeck()">🔀 Shuffle</button>
-                    </div>
-                    
-                    <div class="flashcard-wrapper">
-                        <div class="flashcard" id="flashcard" onclick="flipCard()">
-                            <div class="flashcard-face flashcard-front">
-                                <span class="flashcard-category" id="card-category">Category</span>
-                                <div class="flashcard-sign" id="card-symbol">🚦</div>
-                                <div class="flashcard-term" id="card-term">Italian Term</div>
-                                <div class="flashcard-pronunciation" id="card-pronunciation">(pronunciation)</div>
-                                <span class="flashcard-hint">Click to flip</span>
-                            </div>
-                            <div class="flashcard-face flashcard-back">
-                                <span class="flashcard-category" id="card-category-back">Category</span>
-                                <div class="flashcard-answer" id="card-answer">English meaning and explanation</div>
-                                <span class="flashcard-hint">Click to flip back</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flashcard-controls">
-                        <button class="btn btn-error" onclick="markCard(false)">
-                            ↻ Review Again
-                        </button>
-                        <button class="btn btn-secondary" onclick="previousCard()">
-                            ← Previous
-                        </button>
-                        <button class="btn btn-secondary" onclick="nextCard()">
-                            Next →
-                        </button>
-                        <button class="btn btn-success" onclick="markCard(true)">
-                            ✓ Got It!
-                        </button>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Study Section -->
-            <section id="study-section" class="section">
-                <div class="study-container">
-                    <h2>Study Guide</h2>
-                    <p class="text-muted mb-lg">Click on a topic to expand and read. Italian terms are in <span style="color: var(--italy-green)">green</span>.</p>
-                    
-                    <div class="topic-list" id="topic-list">
-                        <!-- Topics will be inserted by JavaScript -->
-                    </div>
-                </div>
-            </section>
         </main>
     </div>
     
     <!-- Scripts -->
     <script src="js/data.js"></script>
-    <script src="js/flashcardData.js"></script>
     <script src="js/app.js"></script>
     <script src="js/quiz.js"></script>
-    <script src="js/flashcards.js"></script>
 </body>
 </html>
 

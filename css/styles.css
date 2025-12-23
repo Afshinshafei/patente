@@ -572,276 +572,32 @@ h4 { font-size: 1rem; }
     color: var(--text-secondary);
 }
 
-/* Flashcard Styles */
-.flashcard-container {
-    max-width: 600px;
-    margin: 0 auto;
+    padding-top: 0;
 }
 
-.flashcard-wrapper {
-    perspective: 1000px;
-    margin-bottom: var(--spacing-lg);
-}
 
-.flashcard {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease;
-}
-
-.flashcard.flipped {
-    transform: rotateY(180deg);
-}
-
-.flashcard-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: var(--radius-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.study-danger-card {
+    background: rgba(220, 53, 69, 0.05);
+    border-left: 4px solid var(--error);
     padding: var(--spacing-xl);
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.flashcard-front {
-    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-hover) 100%);
-}
-
-.flashcard-back {
-    background: linear-gradient(135deg, var(--bg-accent) 0%, var(--primary-dark) 100%);
-    transform: rotateY(180deg);
-}
-
-.flashcard-category {
-    position: absolute;
-    top: var(--spacing-md);
-    left: var(--spacing-md);
-    padding: var(--spacing-xs) var(--spacing-md);
-    background: rgba(0, 102, 204, 0.2);
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--primary-light);
-}
-
-.flashcard-sign {
-    font-size: 4rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.flashcard-term {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--italy-green);
-    margin-bottom: var(--spacing-sm);
-}
-
-.flashcard-pronunciation {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    font-style: italic;
-}
-
-.flashcard-answer {
-    font-size: 1.3rem;
-    font-weight: 600;
-    line-height: 1.5;
-}
-
-.flashcard-hint {
-    position: absolute;
-    bottom: var(--spacing-md);
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-/* Flashcard Controls */
-.flashcard-controls {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-}
-
-.flashcard-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--spacing-md);
-}
-
-.flashcard-counter {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    font-weight: 600;
-}
-
-/* Flashcard Categories */
-.flashcard-setup {
-    text-align: center;
-    padding: var(--spacing-xl);
-}
-
-.deck-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
-}
-
-.deck-card {
-    padding: var(--spacing-xl);
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    text-align: center;
-    border: 2px solid transparent;
-}
-
-.deck-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-}
-
-.deck-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.deck-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-xs);
-}
-
-.deck-count {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.deck-progress {
-    margin-top: var(--spacing-md);
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-}
-
-.deck-progress-fill {
-    height: 100%;
-    background: var(--success);
-    border-radius: var(--radius-full);
-}
-
-/* Study Section */
-.study-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.topic-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-}
-
-.topic-card {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.topic-header {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg);
-    cursor: pointer;
-    transition: background var(--transition-fast);
-}
-
-.topic-header:hover {
-    background: var(--surface-hover);
-}
-
-.topic-icon {
-    font-size: 1.5rem;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 102, 204, 0.1);
+    margin: var(--spacing-xl) 0;
     border-radius: var(--radius-md);
 }
 
-.topic-info {
-    flex: 1;
+.study-example {
+    background: var(--background);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    border-radius: var(--radius-md);
+    font-family: 'Courier New', monospace;
 }
 
-.topic-title {
-    font-weight: 700;
-    margin-bottom: var(--spacing-xs);
-}
-
-.topic-subtitle {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.topic-arrow {
-    color: var(--text-muted);
-    transition: transform var(--transition-normal);
-}
-
-.topic-card.open .topic-arrow {
-    transform: rotate(180deg);
-}
-
-.topic-content {
-    padding: 0 var(--spacing-lg) var(--spacing-lg);
-    display: none;
-}
-
-.topic-card.open .topic-content {
-    display: block;
-    animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.study-text {
-    color: var(--text-secondary);
-    line-height: 1.8;
-}
-
-.study-text strong {
-    color: var(--text-primary);
-}
-
-.study-text .term {
-    color: var(--italy-green);
-    font-weight: 700;
-}
-
-.study-text .term-meaning {
-    color: var(--text-muted);
-    font-style: italic;
+.study-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.5), transparent);
+    margin: var(--spacing-xxl) 0;
+    border: none;
 }
 
 /* Sign Grid */
@@ -989,10 +745,6 @@ h4 { font-size: 1rem; }
     
     .answer-buttons {
         grid-template-columns: 1fr;
-    }
-    
-    .flashcard {
-        height: 250px;
     }
     
     .results-score {
